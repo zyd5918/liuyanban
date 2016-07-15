@@ -1,6 +1,6 @@
 /****
  * Alert对象
- * 
+ *
  * title /////弹出的标题
  * msg  ////弹出的提示内容
  * callback //////回调函数
@@ -29,7 +29,7 @@ Alert.prototype = {
     },
     //////alert的主体，借助css技巧实现美化的效果
     showAlertBody: function () {
-        /////注意确定按钮点击之后的回调函数        
+        /////注意确定按钮点击之后的回调函数
         //console.log('alert body');
 
         var box = document.createElement('div')
@@ -86,12 +86,12 @@ Alert.prototype = {
 
 /*****
  * Confirm对象
- * 
+ *
  * title 标题
  * msg 提示内容
  * callback 确定按钮的回调函数
  * cancelCallBack  取消按钮的回掉函数
- * 
+ *
  */
 function Confirm(title, msg, callback, cancelCallBack) {
     Alert.call(this, title, msg, callback);
@@ -167,6 +167,7 @@ Prompt.prototype.showAlertBody = function () {
     input.className = 'modal-input'
     input.placeholder = '请输入您的内容'
     box.appendChild(input)
+    input.focus()
     this.inputCtrl = input
 
     var btnBox = document.createElement('div')
@@ -177,14 +178,13 @@ Prompt.prototype.showAlertBody = function () {
 
 // var c = new Confirm('提示框', '确定删除?',
 //     function (res) {
-//         // console.log('ok'); 
+//         // console.log('ok');
 //         (new Alert('提示框', '点了确定')).show();
 //     }, function (res) {
-//         // console.log('cancel'); 
+//         // console.log('cancel');
 //         (new Alert('提示框', '点了取消')).show();
 //     })
 // var c = new Alert('提示框','这是一个提示内容',function(){
 //     alert('执行回调函数');
 // })
 //c.show();
-
