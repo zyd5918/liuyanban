@@ -8,34 +8,20 @@
     <link rel="stylesheet" href="lib/alert/css/alert.css">
 </head>
 <body>
-    <div>
+    <div id="app">
         <header>
             备忘录
         </header>
         <main>
             <div class="note-list">
-                <div class="note-item">
-                    我的日志
+                <div class="note-item" v-for="dir in dirs">
+                    {{dir.dirName}}
                     <div class="note-item-right">
-                        <span class="note-file-count">10</span>
-                        <img src="images/arrow.jpg" alt="">
-                    </div>
-                    
-                </div>
-                <div class="note-item">
-                    资料整理
-                    <div class="note-item-right">
-                        <span class="note-file-count">10</span>
+                        <span class="note-file-count">{{dir.fileCount}}</span>
                         <img src="images/arrow.jpg" alt="">
                     </div>
                 </div>
-                <div class="note-item">
-                    行程安排
-                    <div class="note-item-right">
-                        <span class="note-file-count">10</span>
-                        <img src="images/arrow.jpg" alt="">
-                    </div>
-                </div>
+                
             </div>
         </main>
         <footer>
@@ -44,6 +30,7 @@
     </div>
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/alert/js/alert.js"></script>
+    <script src="lib/vue.min.js"></script>
     <script src="javascripts/index.js"></script>
 </body>
 </html>
