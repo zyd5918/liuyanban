@@ -85,3 +85,8 @@ div.modal-box .modal-button-box{
 	left: auto;
 	right: 0;
 }
+.modal-input{
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 10px;
+}

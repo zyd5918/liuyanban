@@ -12,7 +12,7 @@ function Alert(title, msg, callback) {
 }
 Alert.prototype = {
     //////弹出遮罩层
-    showModalCover: function() {
+    showModalCover: function () {
         document.documentElement.style.overflow = 'hidden'
 
         //  没有直接指定style样式，而是只指定了样式类名称
@@ -25,7 +25,7 @@ Alert.prototype = {
         document.body.appendChild(mask)
     },
     //////alert的主体，借助css技巧实现美化的效果
-    showAlertBody: function() {
+    showAlertBody: function () {
         /////注意确定按钮点击之后的回调函数        
         //console.log('alert body');
 
@@ -50,13 +50,13 @@ Alert.prototype = {
 
     },
     /////alert按钮
-    showButton: function() {
+    showButton: function () {
         var btn = document.createElement('div')
         btn.innerText = '确定'
         document.querySelector('.modal-button-box').appendChild(btn)
 
         var that = this ////把当前的对象赋值给that用于onclick中使用
-        btn.onclick = function(e) {
+        btn.onclick = function (e) {
             that.close()
 
             if (typeof that.callback == 'function') {
@@ -65,7 +65,7 @@ Alert.prototype = {
         }
     },
     ////alert关闭
-    close: function() {
+    close: function () {
         var modal = document.querySelector('.modal-mask')
         var box = document.querySelector('.modal-box')
         document.body.removeChild(modal)
@@ -74,7 +74,7 @@ Alert.prototype = {
         document.documentElement.style.overflow = 'auto'
     },
     /////展示整个效果
-    show: function() {
+    show: function () {
         this.showModalCover();
         this.showAlertBody();
         this.showButton();
@@ -97,7 +97,7 @@ function Confirm(title, msg, callback, cancelCallBack) {
 Confirm.prototype = Object.create(Alert.prototype);
 Confirm.prototype.constructor = Confirm;
 /////处理此处的内容
-Confirm.prototype.showButton = function() {
+Confirm.prototype.showButton = function () {
     var btnBox = document.querySelector('.modal-button-box')
     var separator = document.createElement('span')
     separator.className = 'modal-separator'
@@ -114,13 +114,13 @@ Confirm.prototype.showButton = function() {
     btnBox.appendChild(cancelBtn)
 
     var that = this
-    okBtn.onclick = function() {
+    okBtn.onclick = function () {
         that.close()
         if (typeof that.callback === 'function') {
             that.callback()
         }
     }
-    cancelBtn.onclick = function() {
+    cancelBtn.onclick = function () {
         that.close()
         if (typeof that.cancelCallBack === 'function') {
             that.cancelCallBack()
@@ -129,18 +129,48 @@ Confirm.prototype.showButton = function() {
 
 }
 
+//////自定义Prompt控件
+function Prompt(title, callback, cancelCallBack) {
+    Confirm.call(this, title, "", callback, cancelCallBack);
+}
+Prompt.prototype = Object.create(Confirm.prototype);
+Prompt.prototype.constructor = Prompt;
+Prompt.prototype.showAlertBody = function () {
+    var box = document.createElement('div')
+    box.className = 'modal-box'
+    document.body.appendChild(box)
 
-var c = new Confirm('提示框', '确定删除?', 
-    function(res) { 
-    // console.log('ok'); 
-    (new Alert('提示框','点了确定')).show();
-}, function(res) { 
-    // console.log('cancel'); 
-    (new Alert('提示框','点了取消')).show();
-})
-    // var c = new Alert('提示框','这是一个提示内容',function(){
-    //     alert('执行回调函数');
-    // })
-     c.show();
+    var title = document.createElement('div')
+    title.className = 'modal-title'
+    title.innerText = this.title
+    box.appendChild(title)
 
+    // var msg = document.createElement('div')
+    // msg.className = 'modal-message'
+    // msg.innerText = this.msg
+    // box.appendChild(msg)
+
+    var input = document.createElement('input')
+    input.className = 'modal-input'
+    input.placeholder = '请输入您的内容'
+    box.appendChild(input)
+
+    var btnBox = document.createElement('div')
+    btnBox.className = 'modal-button-box'
+    box.appendChild(btnBox)
+}
+
+
+// var c = new Confirm('提示框', '确定删除?',
+//     function (res) {
+//         // console.log('ok'); 
+//         (new Alert('提示框', '点了确定')).show();
+//     }, function (res) {
+//         // console.log('cancel'); 
+//         (new Alert('提示框', '点了取消')).show();
+//     })
+// var c = new Alert('提示框','这是一个提示内容',function(){
+//     alert('执行回调函数');
+// })
+//c.show();
 
