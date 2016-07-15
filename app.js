@@ -10,7 +10,16 @@ var fs = require('fs');
 //var routes = require('./routes/index');
 //var users = require('./routes/users');
 
+////引入arttemplate模板
+var template = require('art-template');
+
 var app = express();
+
+template.config('base', '');
+template.config('extname', '.html');
+app.engine('.html', template.__express);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
 
 function initNoteApp(req,res,next){
   /////判断目录是否存在
@@ -46,6 +55,7 @@ app.get('/',initNoteApp,(req,res)=>{
 });
 
 app.use('/notes/dir',require('./routes/dir'));
+app.use('/notes/file',require('./routes/file'))
 
 //app.use('/', routes);
 //app.use('/users', users);

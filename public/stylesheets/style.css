@@ -44,10 +44,30 @@ footer{
   position: fixed;
   bottom: 0;
 }
+footer a{
+  margin-left: 10px;
+}
+footer a img{
+  height: 35px;
+  cursor: pointer;
+}
+
 .note-create-dir{
   float: right;
   color:#f3a540;
   margin-right: 10px;
   font-weight: bold;
   cursor: pointer;
+}
+.note-content{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+}
+a{
+  color: #666;
+  text-decoration: none;
+}
+main{
+  height: 400px;
 }

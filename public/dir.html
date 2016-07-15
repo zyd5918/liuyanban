@@ -15,7 +15,7 @@
         <main>
             <div class="note-list">
                 <div class="note-item" v-for="dir in dirs">
-                    {{dir.dirName}}
+                    <a href="/notes/file/{{dir.dirName}}">{{dir.dirName}}</a>
                     <div class="note-item-right">
                         <span class="note-file-count">{{dir.fileCount}}</span>
                         <img src="images/arrow.jpg" alt="">
