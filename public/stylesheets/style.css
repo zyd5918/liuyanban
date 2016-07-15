@@ -1,8 +1,53 @@
+html{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 body {
-  padding: 50px;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url('../images/bg.jpg');
+  color: #666;
+}
+header{
+  text-align: center;
+  font-size: 20px;
+  font-weight: bolder;
+  height:40px;
+  line-height: 40px;
+  border-bottom: 1px solid grey;
 }
 
-a {
-  color: #00B7FF;
+.note-item{
+  border-bottom: 1px solid grey;
+  width: 96%;
+  margin-left: 2%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
+.note-item-right{
+  float: right;
+}
+.note-item-right img{
+  width:12px;
+}
+footer{
+  width: 100%;
+  border-top: 1px solid grey;
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  bottom: 0;
+}
+.note-create-dir{
+  float: right;
+  color:#f3a540;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }

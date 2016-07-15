@@ -9,6 +9,9 @@ function Alert(title, msg, callback) {
     this.title = title;
     this.msg = msg;
     this.callback = callback;
+
+    /////定义一个输入框控件 在Prompt的时候使用
+    this.inputCtrl = null;
 }
 Alert.prototype = {
     //////弹出遮罩层
@@ -115,9 +118,19 @@ Confirm.prototype.showButton = function () {
 
     var that = this
     okBtn.onclick = function () {
+
+        /////处理Prompt调用,点击确定按钮的时候 返回输入的内容
+        var res = "";
+        if(that.inputCtrl){
+            res = that.inputCtrl.value;
+            if(res.trim()==""){ /////当输入内容为空的时候 返回 不做任何操作
+                return;
+            }
+        }
+
         that.close()
         if (typeof that.callback === 'function') {
-            that.callback()
+            that.callback(res)
         }
     }
     cancelBtn.onclick = function () {
@@ -154,6 +167,7 @@ Prompt.prototype.showAlertBody = function () {
     input.className = 'modal-input'
     input.placeholder = '请输入您的内容'
     box.appendChild(input)
+    this.inputCtrl = input
 
     var btnBox = document.createElement('div')
     btnBox.className = 'modal-button-box'
