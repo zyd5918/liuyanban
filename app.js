@@ -10,11 +10,13 @@ var fs = require('fs');
 //var routes = require('./routes/index');
 //var users = require('./routes/users');
 
-////引入arttemplate模板
-var template = require('art-template');
+
 
 var app = express();
 
+
+////引入arttemplate模板
+var template = require('art-template');
 template.config('base', '');
 template.config('extname', '.html');
 app.engine('.html', template.__express);
@@ -105,3 +107,37 @@ app.use('/notes/file', require('./routes/file'))
 app.listen(3000, function (request, response) {
     console.log('服务器运行中......');
 })
+/********
+ * nodejs fs文件系统常用操作方法
+ * 
+ * fs.readdir//异步读取一个文件路径，返回目录下的所有文件名称数组
+ * fs.readdirSync//同步读取一个文件路劲，返回目录下的所有文件名称数组
+ * 
+ * fs.reddir(path,function (err,data) {
+     if (err) {
+         console.log(err)//当报错的时候 err有值，否则err的值为undefined
+
+     }
+     else{
+         data///值为所有文件名称的数组
+     }
+ })
+ var arrFiles=fs。readdirSync(path);//arrFiles是一个数组
+ fs.readFileSync //同步读取文件内容，需要toString（）转换为字符串
+ 同上目录方式返回结果不同
+
+ fs.stat//异步读取文件的属性
+ fs.statSync//同步读取文件的属性信息
+ 同上目录操作方式返回一个对象。最长使用的是通过返回值判断当前路径的类型（文件夹或者文件）
+
+
+
+ req//request获取参数方式
+ req.query //获取url参数
+ req.body //form表单传递的参数
+ req.params//获取express框架中：方式传递的参数
+
+ res //response输出结果
+ res.redirect//页面跳转
+ res.json //输出json数据到页面
+ ***/
